@@ -25,7 +25,8 @@ claude plugin install momiji-skills@momiji-skills
 Each skill drives its tool's CLI, so install the tools you use. The skill explains
 how, and the agent can install a tool itself.
 
-**termshot**: download the binary for your platform from the
+**termshot**: `npm install -g @momiji-rs/termshot`, or download the binary
+for your platform from the
 [releases](https://github.com/momiji-rs/termshot/releases). Note that
 `brew install termshot` installs a different project.
 

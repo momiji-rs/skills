@@ -2,11 +2,11 @@
 name: termshot
 description: Render terminal output into a PNG, plain text, or JSON of the final screen with the termshot CLI (momiji-rs/termshot). Use it to screenshot a TUI or CLI command, check what a terminal app actually displays (layout, colours, cursor) without opening a terminal, make deterministic screenshots for READMEs, PRs, and CI golden tests, or render a PTY log or asciinema .cast someone sent.
 argument-hint: "[log-or-cast | command]"
-allowed-tools: Bash(termshot *) Bash(uname *) Bash(tmux capture-pane *) Bash(tmux display *)
+allowed-tools: Bash(termshot *) Bash(npx -y @momiji-rs/termshot *) Bash(uname *) Bash(tmux capture-pane *) Bash(tmux display *)
 license: MIT
-compatibility: macOS or Linux. Needs the termshot CLI from GitHub releases (not Homebrew's termshot); tmux is optional, for running TUIs.
+compatibility: macOS or Linux. Needs the termshot CLI from npm (@momiji-rs/termshot) or GitHub releases, not Homebrew's termshot; tmux is optional, for running TUIs.
 metadata:
-  termshot-version: "0.3.0"
+  termshot-version: "0.3.1"
 ---
 
 # termshot
@@ -124,10 +124,17 @@ tool. A smaller `--px` (such as 20) keeps the file small.
 ## Install
 
 ⚠️ **`brew install termshot` installs a different tool** (homeport/termshot).
-Install from the GitHub release instead:
+Install from npm (Node 18 or newer, macOS or Linux):
 
 ```bash
-v=0.3.0   # latest: gh release view -R momiji-rs/termshot --json tagName -q .tagName
+npm install -g @momiji-rs/termshot        # puts termshot on PATH
+npx -y @momiji-rs/termshot --version      # or run it without installing
+```
+
+Without Node, download the release binary instead:
+
+```bash
+v=0.3.1   # latest: gh release view -R momiji-rs/termshot --json tagName -q .tagName
 case "$(uname -s)-$(uname -m)" in
   Darwin-*)       p=macos-universal ;;
   Linux-x86_64)   p=linux-x86_64-musl ;;
