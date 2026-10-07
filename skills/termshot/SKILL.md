@@ -1,6 +1,12 @@
 ---
 name: termshot
 description: Render terminal output into a PNG, plain text, or JSON of the final screen with the termshot CLI (momiji-rs/termshot). Use it to screenshot a TUI or CLI command, check what a terminal app actually displays (layout, colours, cursor) without opening a terminal, make deterministic screenshots for READMEs, PRs, and CI golden tests, or render a PTY log or asciinema .cast someone sent.
+argument-hint: "[log-or-cast | command]"
+allowed-tools: Bash(termshot *) Bash(uname *) Bash(tmux capture-pane *) Bash(tmux display *)
+license: MIT
+compatibility: macOS or Linux. Needs the termshot CLI from GitHub releases (not Homebrew's termshot); tmux is optional, for running TUIs.
+metadata:
+  termshot-version: "0.3.0"
 ---
 
 # termshot
@@ -13,28 +19,10 @@ a window, or a display. The same input gives the same pixels on macOS and Linux.
 It draws one frame and doesn't animate. It doesn't run the program for you, so
 capture the output first (see below) and then render it.
 
-## Install
-
-```bash
-termshot --version 2>/dev/null | grep -q '^termshot ' || echo "not installed"
-```
-
-⚠️ **`brew install termshot` installs a different tool** (homeport/termshot).
-Install from the GitHub release instead:
-
-```bash
-v=0.3.0   # latest: gh release view -R momiji-rs/termshot --json tagName -q .tagName
-case "$(uname -s)-$(uname -m)" in
-  Darwin-*)       p=macos-universal ;;
-  Linux-x86_64)   p=linux-x86_64-musl ;;
-  Linux-aarch64)  p=linux-aarch64-musl ;;
-esac
-curl -fsSL "https://github.com/momiji-rs/termshot/releases/download/v$v/termshot-$v-$p.tar.gz" \
-  | tar xz -C /tmp
-mkdir -p ~/.local/bin && install -m 755 "/tmp/termshot-$v-$p/termshot" ~/.local/bin/termshot
-```
-
-It is one static binary with JetBrains Mono built in, so it needs no other files.
+On this machine: !`termshot --version 2>/dev/null || echo "termshot not installed"`, on !`uname -sm`.
+Ours prints `termshot X.Y.Z`; if it prints anything else or isn't installed, see
+[Install](#install) at the end. Arguments, if any: `$ARGUMENTS` (a log or cast to
+render, or a command to screenshot).
 
 ## Choose a capture method
 
@@ -132,3 +120,22 @@ tool. A smaller `--px` (such as 20) keeps the file small.
   Noto Emoji, because colour emoji fonts are bitmaps.
 - **A shifted or wrapped layout:** `--size` doesn't match the size the program
   drew for.
+
+## Install
+
+⚠️ **`brew install termshot` installs a different tool** (homeport/termshot).
+Install from the GitHub release instead:
+
+```bash
+v=0.3.0   # latest: gh release view -R momiji-rs/termshot --json tagName -q .tagName
+case "$(uname -s)-$(uname -m)" in
+  Darwin-*)       p=macos-universal ;;
+  Linux-x86_64)   p=linux-x86_64-musl ;;
+  Linux-aarch64)  p=linux-aarch64-musl ;;
+esac
+curl -fsSL "https://github.com/momiji-rs/termshot/releases/download/v$v/termshot-$v-$p.tar.gz" \
+  | tar xz -C /tmp
+mkdir -p ~/.local/bin && install -m 755 "/tmp/termshot-$v-$p/termshot" ~/.local/bin/termshot
+```
+
+It is one static binary with JetBrains Mono built in, so it needs no other files.

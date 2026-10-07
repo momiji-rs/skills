@@ -1,6 +1,6 @@
 {
   "name": "momiji-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Agent skills for momiji-rs tools, each driving that tool's CLI. Bundles termshot today.",
   "author": {
     "name": "momiji-rs"
