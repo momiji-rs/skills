@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "momiji-skills",
+  "metadata": {
+    "description": "Agent skills for momiji-rs tools",
+    "version": "0.1.0"
+  },
+  "owner": {
+    "name": "momiji-rs"
+  },
+  "plugins": [
+    {
+      "name": "momiji-skills",
+      "description": "Agent skills for momiji-rs tools, each driving that tool's CLI. Bundles termshot today.",
+      "source": "./",
+      "category": "development"
+    }
+  ]
+}
