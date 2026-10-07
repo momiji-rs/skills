@@ -6,7 +6,7 @@ allowed-tools: Bash(termshot *) Bash(npx -y @momiji-rs/termshot *) Bash(uname *)
 license: MIT
 compatibility: macOS or Linux. Needs the termshot CLI from npm (@momiji-rs/termshot) or GitHub releases, not Homebrew's termshot; tmux is optional, for running TUIs.
 metadata:
-  termshot-version: "0.3.1"
+  termshot-version: "0.3.2"
 ---
 
 # termshot
@@ -124,7 +124,7 @@ tool. A smaller `--px` (such as 20) keeps the file small.
 ## Install
 
 ⚠️ **`brew install termshot` installs a different tool** (homeport/termshot).
-Install from npm (Node 18 or newer, macOS or Linux):
+Install from npm (Node 22 or newer, macOS or Linux):
 
 ```bash
 npm install -g @momiji-rs/termshot        # puts termshot on PATH
@@ -134,7 +134,7 @@ npx -y @momiji-rs/termshot --version      # or run it without installing
 Without Node, download the release binary instead:
 
 ```bash
-v=0.3.1   # latest: gh release view -R momiji-rs/termshot --json tagName -q .tagName
+v=0.3.2   # latest: gh release view -R momiji-rs/termshot --json tagName -q .tagName
 case "$(uname -s)-$(uname -m)" in
   Darwin-*)       p=macos-universal ;;
   Linux-x86_64)   p=linux-x86_64-musl ;;
